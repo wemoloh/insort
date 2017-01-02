@@ -6,7 +6,8 @@
   "main": "ordered-map.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "mocha"
+    "test": "mocha",
+    "minify": "babili ordered-map.js -o ordered-map.min.js --no-comments"
   },
   "keywords": [
     "OrderedMap",
@@ -23,6 +24,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "babili": "0.0.9",
     "eslint": "^3.12.2",
     "eslint-config-google": "^0.7.1",
     "mocha": "^3.2.0"
