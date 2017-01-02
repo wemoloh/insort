@@ -1,4 +1,4 @@
-# OrderedMap
+# TidyMap
 
 JavaScript (ES6) Map subclass that efficiently maintains a sorted iteration
 order.
@@ -6,15 +6,15 @@ order.
 ## Usage
 
 ```js
-let OrderedMap = require('ordered-map');
-// => [Function: OrderedMap]
+let TidyMap = require('tidymap');
+// => [Function: TidyMap]
 
-let m = new OrderedMap([[42, 'foo'], [99, 'bar'], [0, 'quux']],
+let m = new TidyMap([[42, 'foo'], [99, 'bar'], [0, 'quux']],
                        (a, b) => a - b); // default cmp uses localeCompare
-// => OrderedMap { 0 => 'quux', 42 => 'foo', 99 => 'bar' }
+// => TidyMap { 0 => 'quux', 42 => 'foo', 99 => 'bar' }
 
 m.set(59, 'spam');
-// => OrderedMap { 0 => 'quux', 42 => 'foo', 59 => 'spam', 99 => 'bar' }
+// => TidyMap { 0 => 'quux', 42 => 'foo', 59 => 'spam', 99 => 'bar' }
 ```
 
 ## Requirements

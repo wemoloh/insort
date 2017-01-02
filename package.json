@@ -1,15 +1,16 @@
 {
-  "name": "ordered-map",
+  "name": "tidymap",
   "version": "0.1.0",
   "description": "Map subclass that efficiently maintains a sorted iteration order.",
-  "homepage": "https://github.com/wemoloh/ordered-map",
-  "main": "ordered-map.js",
+  "homepage": "https://github.com/wemoloh/tidymap",
+  "main": "tidymap.js",
   "scripts": {
     "lint": "eslint .",
     "test": "mocha",
-    "minify": "babili ordered-map.js -o ordered-map.min.js --no-comments"
+    "minify": "babili tidymap.js -o tidymap.min.js --no-comments"
   },
   "keywords": [
+    "TidyMap",
     "OrderedMap",
     "SortedMap",
     "ordered",
@@ -20,7 +21,7 @@
   "author": "Bart Robinson <bart@bartrobinson.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/wemoloh/ordered-map.git"
+    "url": "git://github.com/wemoloh/tidymap.git"
   },
   "license": "MIT",
   "devDependencies": {
