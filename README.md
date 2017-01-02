@@ -1,5 +1,7 @@
 # TidyMap
 
+[![Build Status](https://travis-ci.org/wemoloh/tidymap.svg?branch=master)](https://travis-ci.org/wemoloh/tidymap)
+
 JavaScript (ES6) Map subclass that efficiently maintains a sorted iteration
 order.
 
