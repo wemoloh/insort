@@ -1,0 +1,25 @@
+{
+  "name": "ordered-map",
+  "version": "0.1.0",
+  "description": "Map subclass that efficiently maintains a sorted iteration order.",
+  "main": "ordered-map.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha"
+  },
+  "keywords": [
+    "OrderedMap",
+    "SortedMap",
+    "ordered",
+    "sorted",
+    "bisect",
+    "binary search"
+  ],
+  "author": "Bart Robinson",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-google": "^0.7.1",
+    "mocha": "^3.2.0"
+  }
+}
