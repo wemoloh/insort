@@ -5,13 +5,13 @@ order.
 
 ## Usage
 
-```js
+```
 > OrderedMap = require('ordered-map');
 [Function: OrderedMap]
 > m = new OrderedMap([[42, 'foo'], [99, 'bar'], [0, 'quux']],
 ...                  (a, b) => a - b); // default cmp uses localeCompare
 OrderedMap { 0 => 'quux', 42 => 'foo', 99 => 'bar' }
-> m.set(59, 'spam')
+> m.set(59, 'spam');
 OrderedMap { 0 => 'quux', 42 => 'foo', 59 => 'spam', 99 => 'bar' }
 ```
 
