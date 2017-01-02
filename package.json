@@ -5,7 +5,7 @@
   "homepage": "https://github.com/wemoloh/tidymap",
   "main": "tidymap.js",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint tidymap.js test/test.js",
     "test": "mocha",
     "minify": "babili tidymap.js -o tidymap.min.js --no-comments"
   },
