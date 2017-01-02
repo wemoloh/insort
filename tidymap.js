@@ -1,5 +1,5 @@
 /**
- * ordered-map module: provides OrderedMap class.
+ * ordered-map module: provides TidyMap class.
  */
 
 (function() {
@@ -29,10 +29,10 @@
   /**
    * Map subclass that efficiently maintains a sorted iteration order.
    */
-  class OrderedMap extends Map {
+  class TidyMap extends Map {
 
     /**
-     * Create a new OrderedMap.
+     * Create a new TidyMap.
      *
      * @param {Iterable} [entries] - Key-value pairs to initialize map.  They
      * do not have to be pre-sorted.
@@ -117,14 +117,14 @@
     }
   }
 
-  OrderedMap.prototype[Symbol.iterator] = OrderedMap.prototype.entries;
+  TidyMap.prototype[Symbol.iterator] = TidyMap.prototype.entries;
 
   // export
   if (typeof module !== 'undefined' && !module.nodeType && module.exports) {
     // Node.js
-    module.exports = OrderedMap;
+    module.exports = TidyMap;
   } else {
     // browser
-    self.OrderedMap = OrderedMap;
+    self.TidyMap = TidyMap;
   }
 }());
