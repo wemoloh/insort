@@ -10,7 +10,7 @@ let TidyMap = require('tidymap');
 // => [Function: TidyMap]
 
 let m = new TidyMap([[42, 'foo'], [99, 'bar'], [0, 'quux']],
-                       (a, b) => a - b); // default cmp uses localeCompare
+                    (a, b) => a - b); // default cmp uses localeCompare
 // => TidyMap { 0 => 'quux', 42 => 'foo', 99 => 'bar' }
 
 m.set(59, 'spam');
