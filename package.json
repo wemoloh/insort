@@ -16,6 +16,10 @@
     "binary search"
   ],
   "author": "Bart Robinson",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wemoloh/ordered-map.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "eslint": "^3.12.2",
