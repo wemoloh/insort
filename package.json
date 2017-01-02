@@ -2,6 +2,7 @@
   "name": "ordered-map",
   "version": "0.1.0",
   "description": "Map subclass that efficiently maintains a sorted iteration order.",
+  "homepage": "https://github.com/wemoloh/ordered-map",
   "main": "ordered-map.js",
   "scripts": {
     "lint": "eslint .",
@@ -15,7 +16,7 @@
     "bisect",
     "binary search"
   ],
-  "author": "Bart Robinson",
+  "author": "Bart Robinson <bart@bartrobinson.com>",
   "repository": {
     "type": "git",
     "url": "git://github.com/wemoloh/ordered-map.git"
