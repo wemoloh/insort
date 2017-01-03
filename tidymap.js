@@ -1,5 +1,5 @@
 /**
- * ordered-map module: provides TidyMap class.
+ * tidymap module: provides TidyMap class.
  */
 
 (function() {
@@ -37,7 +37,7 @@
      * @param {Iterable} [entries] - Key-value pairs to initialize map.  They
      * do not have to be pre-sorted.
      * @param {Function} [cmp] - Function to compare two elements, just as in
-     * Array#sort().  Default uses String#localeCompare.
+     * Array#sort().  Default uses String#localeCompare().
      */
     constructor(entries = [], cmp = CMP_DEFAULT) {
       super();
