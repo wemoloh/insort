@@ -72,15 +72,17 @@
     entries() {
       let i = 0;
       let order = this[ORDER];
-      return {
+      let it = {
         next: () => {
           if (i >= order.length) {
             return {value: void 0, done: true};
           }
           let key = order[i++];
           return {value: [key, this.get(key)], done: false};
-        }
+        },
+        [Symbol.iterator]: () => it
       };
+      return it;
     }
 
     forEach(f, that) {
@@ -106,14 +108,16 @@
     values() {
       let i = 0;
       let order = this[ORDER];
-      return {
+      let it = {
         next: () => {
           if (i >= order.length) {
             return {value: void 0, done: true};
           }
           return {value: this.get(order[i++]), done: false};
-        }
+        },
+        [Symbol.iterator]: () => it
       };
+      return it;
     }
   }
 
