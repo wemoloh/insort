@@ -90,6 +90,7 @@ describe('TidyMap', function() {
     it('#entries()', function() {
       let m = new TidyMap(UNSORTED);
       let it = m.entries();
+      assert.strictEqual(it[Symbol.iterator](), it);
       for (let entry of SORTED) {
         assert.deepStrictEqual(it.next(), {value: entry, done: false});
       }
@@ -108,6 +109,7 @@ describe('TidyMap', function() {
     it('#keys()', function() {
       let m = new TidyMap(UNSORTED);
       let it = m.keys();
+      assert.strictEqual(it[Symbol.iterator](), it);
       for (let [key,] of SORTED) {  // eslint-disable-line comma-spacing
         assert.deepStrictEqual(it.next(), {value: key, done: false});
       }
@@ -117,6 +119,7 @@ describe('TidyMap', function() {
     it('#values()', function() {
       let m = new TidyMap(UNSORTED);
       let it = m.values();
+      assert.strictEqual(it[Symbol.iterator](), it);
       for (let [, value] of SORTED) {
         assert.deepStrictEqual(it.next(), {value: value, done: false});
       }
