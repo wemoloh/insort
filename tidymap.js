@@ -69,20 +69,10 @@
       return had;
     }
 
-    entries() {
-      let i = 0;
-      let order = this[ORDER];
-      let it = {
-        next: () => {
-          if (i >= order.length) {
-            return {value: void 0, done: true};
-          }
-          let key = order[i++];
-          return {value: [key, this.get(key)], done: false};
-        },
-        [Symbol.iterator]: () => it
-      };
-      return it;
+    * entries() {
+      for (let key of this[ORDER]) {
+        yield [key, this.get(key)];
+      }
     }
 
     forEach(f, that) {
@@ -105,19 +95,10 @@
       return this;
     }
 
-    values() {
-      let i = 0;
-      let order = this[ORDER];
-      let it = {
-        next: () => {
-          if (i >= order.length) {
-            return {value: void 0, done: true};
-          }
-          return {value: this.get(order[i++]), done: false};
-        },
-        [Symbol.iterator]: () => it
-      };
-      return it;
+    * values() {
+      for (let key of this[ORDER]) {
+        yield this.get(key);
+      }
     }
   }
 
