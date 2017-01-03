@@ -1,6 +1,6 @@
 {
   "name": "tidymap",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Map subclass that efficiently maintains a sorted iteration order.",
   "homepage": "https://github.com/wemoloh/tidymap",
   "main": "tidymap.js",
@@ -10,13 +10,14 @@
     "minify": "babili tidymap.js -o tidymap.min.js --no-comments"
   },
   "keywords": [
-    "TidyMap",
-    "OrderedMap",
-    "SortedMap",
+    "map",
     "ordered",
     "sorted",
+    "iterate",
     "bisect",
-    "binary search"
+    "binary search",
+    "OrderedMap",
+    "SortedMap"
   ],
   "author": "Bart Robinson <bart@bartrobinson.com>",
   "repository": {
