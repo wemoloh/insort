@@ -1,6 +1,6 @@
 {
   "name": "tidymap",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Map subclass that efficiently maintains a sorted iteration order.",
   "homepage": "https://github.com/wemoloh/tidymap",
   "main": "tidymap.js",
