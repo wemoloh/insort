@@ -1,7 +1,7 @@
 {
   "name": "tidymap",
   "version": "0.3.0",
-  "description": "Map subclass that efficiently maintains a sorted iteration order.",
+  "description": "Map, Set, and Object subclasses that efficiently maintain a sorted iteration order.",
   "homepage": "https://github.com/wemoloh/tidymap",
   "main": "tidymap.js",
   "scripts": {
@@ -11,13 +11,16 @@
   },
   "keywords": [
     "map",
+    "set",
     "ordered",
     "sorted",
     "iterate",
     "bisect",
-    "binary search",
+    "insort",
     "OrderedMap",
-    "SortedMap"
+    "SortedMap",
+    "OrderedSet",
+    "SortedSet"
   ],
   "author": "Bart Robinson <bart@bartrobinson.com>",
   "repository": {
