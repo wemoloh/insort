@@ -1,4 +1,4 @@
-let {TidyMap, TidySet, TidyObject} = require('..');
+let {SortedMap, SortedSet, SortedObject} = require('..');
 let assert = require('assert');
 
 const SORTED = [['b', 42], ['q', -8], ['x', 23]];
@@ -10,63 +10,63 @@ const UNSORTED_KEYS = ['b', 'x', 'q'];
 const SORTED_OBJECT = {b: 42, q: -8, x: 23};
 const UNSORTED_OBJECT = {b: 42, x: 23, q: -8};
 
-describe('TidyMap', function() {
+describe('SortedMap', function() {
   describe('#constructor()', function() {
     it('no args', function() {
-      let m = new TidyMap();
+      let m = new SortedMap();
       assert.deepStrictEqual([...m], []);
     });
 
     it('sorted', function() {
-      let m = new TidyMap(SORTED);
+      let m = new SortedMap(SORTED);
       assert.deepStrictEqual([...m], SORTED);
     });
 
     it('unsorted', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       assert.deepStrictEqual([...m], SORTED);
     });
 
     it('cmp default', function() {
       // default compare is lexicographic, not numerical
-      let m = new TidyMap([[0, 42], [10, -8], [2, 23]]);
+      let m = new SortedMap([[0, 42], [10, -8], [2, 23]]);
       assert.deepStrictEqual([...m], [[0, 42], [10, -8], [2, 23]]);
     });
 
     it('cmp custom', function() {
-      let m = new TidyMap([[0, 42], [10, -8], [2, 23]],
-                          (a, b) => a - b);
+      let m = new SortedMap([[0, 42], [10, -8], [2, 23]],
+                            (a, b) => a - b);
       assert.deepStrictEqual([...m], [[0, 42], [2, 23], [10, -8]]);
     });
 
     it('inheritance', function() {
-      let m = new TidyMap();
+      let m = new SortedMap();
       assert(m instanceof Map);
     });
   });
 
   describe('#set()', function() {
     it('new at beginning', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       assert.strictEqual(m, m.set('a', 99));
       assert.deepStrictEqual([...m], [['a', 99]].concat(SORTED));
     });
 
     it('new at end', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       assert.strictEqual(m, m.set('z', 0));
       assert.deepStrictEqual([...m], SORTED.concat([['z', 0]]));
     });
 
     it('new in middle', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       assert.strictEqual(m, m.set('g', 13));
       assert.deepStrictEqual([...m],
                              [['b', 42], ['g', 13], ['q', -8], ['x', 23]]);
     });
 
     it('existing', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       assert.strictEqual(m, m.set('q', 99));
       assert.deepStrictEqual([...m], [['b', 42], ['q', 99], ['x', 23]]);
     });
@@ -74,13 +74,13 @@ describe('TidyMap', function() {
 
   describe('#delete()', function() {
     it('existing', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       assert(m.delete(SORTED[1][0]));
       assert.deepStrictEqual([...m], [SORTED[0], SORTED[2]]);
     });
 
     it('missing', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       assert(!m.delete('g'));
       assert.deepStrictEqual([...m], SORTED);
     });
@@ -88,13 +88,13 @@ describe('TidyMap', function() {
 
   describe('other overridden methods', function() {
     it('#clear()', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       assert.strictEqual(void 0, m.clear());
       assert.deepStrictEqual([...m], []);
     });
 
     it('#entries()', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       let it = m.entries();
       assert.strictEqual(it[Symbol.iterator](), it);
       for (let entry of SORTED) {
@@ -104,7 +104,7 @@ describe('TidyMap', function() {
     });
 
     it('#forEach()', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       let i = 0;
       m.forEach((v, k, that) => {
         assert.deepStrictEqual([k, v], SORTED[i++]);
@@ -113,7 +113,7 @@ describe('TidyMap', function() {
     });
 
     it('#keys()', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       let it = m.keys();
       assert.strictEqual(it[Symbol.iterator](), it);
       for (let [key,] of SORTED) {  // eslint-disable-line comma-spacing
@@ -123,7 +123,7 @@ describe('TidyMap', function() {
     });
 
     it('#values()', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       let it = m.values();
       assert.strictEqual(it[Symbol.iterator](), it);
       for (let [, value] of SORTED) {
@@ -135,7 +135,7 @@ describe('TidyMap', function() {
 
   describe('inherited properties', function() {
     it('#size', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       assert.strictEqual(SORTED.length, m.size);
       m.set('g', 13);
       assert.strictEqual(SORTED.length + 1, m.size);
@@ -144,7 +144,7 @@ describe('TidyMap', function() {
     });
 
     it('#get()', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       for (let [key, value] of SORTED) {
         assert.deepStrictEqual(value, m.get(key));
         assert.strictEqual(void 0, m.get('g'));
@@ -152,69 +152,69 @@ describe('TidyMap', function() {
     });
 
     it('#has()', function() {
-      let m = new TidyMap(UNSORTED);
+      let m = new SortedMap(UNSORTED);
       assert(m.has(SORTED[0][0]));
       assert(!m.has('g'));
     });
   });
 });
 
-describe('TidySet', function() {
+describe('SortedSet', function() {
   describe('#constructor()', function() {
     it('no args', function() {
-      let s = new TidySet();
+      let s = new SortedSet();
       assert.deepStrictEqual([...s], []);
     });
 
     it('sorted', function() {
-      let s = new TidySet(SORTED_KEYS);
+      let s = new SortedSet(SORTED_KEYS);
       assert.deepStrictEqual([...s], SORTED_KEYS);
     });
 
     it('unsorted', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       assert.deepStrictEqual([...s], SORTED_KEYS);
     });
 
     it('cmp default', function() {
       // default compare is lexicographic, not numerical
-      let s = new TidySet([0, 10, 2]);
+      let s = new SortedSet([0, 10, 2]);
       assert.deepStrictEqual([...s], [0, 10, 2]);
     });
 
     it('cmp custom', function() {
-      let s = new TidySet([0, 10, 2],
-                          (a, b) => a - b);
+      let s = new SortedSet([0, 10, 2],
+                            (a, b) => a - b);
       assert.deepStrictEqual([...s], [0, 2, 10]);
     });
 
     it('inheritance', function() {
-      let s = new TidySet();
+      let s = new SortedSet();
       assert(s instanceof Set);
     });
   });
 
   describe('#add()', function() {
     it('at beginning', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       assert.strictEqual(s, s.add('a'));
       assert.deepStrictEqual([...s], ['a'].concat(SORTED_KEYS));
     });
 
     it('at end', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       assert.strictEqual(s, s.add('z'));
       assert.deepStrictEqual([...s], SORTED_KEYS.concat(['z']));
     });
 
     it('in middle', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       assert.strictEqual(s, s.add('g'));
       assert.deepStrictEqual([...s], ['b', 'g', 'q', 'x']);
     });
 
     it('existing', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       assert.strictEqual(s, s.add('q'));
       assert.deepStrictEqual([...s], SORTED_KEYS);
     });
@@ -222,13 +222,13 @@ describe('TidySet', function() {
 
   describe('#delete()', function() {
     it('existing', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       assert(s.delete(SORTED_KEYS[1]));
       assert.deepStrictEqual([...s], [SORTED_KEYS[0], SORTED_KEYS[2]]);
     });
 
     it('missing', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       assert(!s.delete('g'));
       assert.deepStrictEqual([...s], SORTED_KEYS);
     });
@@ -236,13 +236,13 @@ describe('TidySet', function() {
 
   describe('other overridden methods', function() {
     it('#clear()', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       assert.strictEqual(void 0, s.clear());
       assert.deepStrictEqual([...s], []);
     });
 
     it('#entries()', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       let it = s.entries();
       assert.strictEqual(it[Symbol.iterator](), it);
       for (let key of SORTED_KEYS) {
@@ -252,7 +252,7 @@ describe('TidySet', function() {
     });
 
     it('#forEach()', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       let i = 0;
       s.forEach((v, k, that) => {
         let key = SORTED_KEYS[i++];
@@ -262,7 +262,7 @@ describe('TidySet', function() {
     });
 
     it('#keys()', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       let it = s.keys();
       assert.strictEqual(it[Symbol.iterator](), it);
       for (let key of SORTED_KEYS) {
@@ -272,7 +272,7 @@ describe('TidySet', function() {
     });
 
     it('#values()', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       let it = s.values();
       assert.strictEqual(it[Symbol.iterator](), it);
       for (let key of SORTED_KEYS) {
@@ -284,7 +284,7 @@ describe('TidySet', function() {
 
   describe('inherited properties', function() {
     it('#size', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       assert.strictEqual(SORTED_KEYS.length, s.size);
       s.add('g');
       assert.strictEqual(SORTED_KEYS.length + 1, s.size);
@@ -293,29 +293,29 @@ describe('TidySet', function() {
     });
 
     it('#has()', function() {
-      let s = new TidySet(UNSORTED_KEYS);
+      let s = new SortedSet(UNSORTED_KEYS);
       assert(s.has(SORTED_KEYS[0]));
       assert(!s.has('g'));
     });
   });
 });
 
-describe('TidyObject', function() {
+describe('SortedObject', function() {
   describe('#constructor()', function() {
     it('no args', function() {
-      let o = new TidyObject();
+      let o = new SortedObject();
       assert.deepEqual(o, {});
     });
 
     it('sorted', function() {
-      let o = new TidyObject(SORTED_OBJECT);
+      let o = new SortedObject(SORTED_OBJECT);
       assert.deepEqual(o, SORTED_OBJECT);
       assert.deepStrictEqual(Object.keys(o),
                              Object.keys(SORTED_OBJECT).sort());
     });
 
     it('unsorted', function() {
-      let o = new TidyObject(UNSORTED_OBJECT);
+      let o = new SortedObject(UNSORTED_OBJECT);
       assert.deepEqual(o, SORTED_OBJECT);
       assert.deepStrictEqual(Object.keys(o),
                              Object.keys(SORTED_OBJECT).sort());
@@ -323,12 +323,12 @@ describe('TidyObject', function() {
 
     it('cmp default', function() {
       // default compare is lexicographic, not numerical
-      let o = new TidyObject({'0': 42, '10': -8, '2': 23});
+      let o = new SortedObject({'0': 42, '10': -8, '2': 23});
       assert.deepStrictEqual(Object.keys(o), ['0', '10', '2']);
     });
 
     it('cmp custom', function() {
-      let o = new TidyObject({'0': 42, '10': -8, '2': 23},
+      let o = new SortedObject({'0': 42, '10': -8, '2': 23},
                              (a, b) => parseInt(a, 10) - parseInt(b, 10));
       assert.deepStrictEqual(Object.keys(o), ['0', '2', '10']);
     });
@@ -336,7 +336,7 @@ describe('TidyObject', function() {
 
   describe('set', function() {
     it('new at beginning', function() {
-      let o = new TidyObject(UNSORTED_OBJECT);
+      let o = new SortedObject(UNSORTED_OBJECT);
       o.a = 99;
       let expected = Object.assign({}, SORTED_OBJECT, {a: 99});
       assert.deepEqual(o, expected);
@@ -344,7 +344,7 @@ describe('TidyObject', function() {
     });
 
     it('new at end', function() {
-      let o = new TidyObject(UNSORTED_OBJECT);
+      let o = new SortedObject(UNSORTED_OBJECT);
       o.z = 0;
       let expected = Object.assign({}, SORTED_OBJECT, {z: 0});
       assert.deepEqual(o, expected);
@@ -352,7 +352,7 @@ describe('TidyObject', function() {
     });
 
     it('new in middle', function() {
-      let o = new TidyObject(UNSORTED_OBJECT);
+      let o = new SortedObject(UNSORTED_OBJECT);
       o.g = 13;
       let expected = Object.assign({}, SORTED_OBJECT, {g: 13});
       assert.deepEqual(o, expected);
@@ -360,7 +360,7 @@ describe('TidyObject', function() {
     });
 
     it('existing', function() {
-      let o = new TidyObject(UNSORTED_OBJECT);
+      let o = new SortedObject(UNSORTED_OBJECT);
       o.q = 99;
       let expected = Object.assign({}, SORTED_OBJECT, {q: 99});
       assert.deepEqual(o, expected);
@@ -370,7 +370,7 @@ describe('TidyObject', function() {
 
   describe('delete', function() {
     it('existing', function() {
-      let o = new TidyObject(UNSORTED_OBJECT);
+      let o = new SortedObject(UNSORTED_OBJECT);
       delete o.q;
       assert.strictEqual(void 0, o.q);
       let expected = {b: 42, x: 23};
@@ -379,7 +379,7 @@ describe('TidyObject', function() {
     });
 
     it('missing', function() {
-      let o = new TidyObject(UNSORTED_OBJECT);
+      let o = new SortedObject(UNSORTED_OBJECT);
       delete o.g;
       assert.strictEqual(void 0, o.g);
       assert.deepEqual(o, SORTED_OBJECT);

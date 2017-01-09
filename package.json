@@ -1,13 +1,13 @@
 {
-  "name": "tidymap",
-  "version": "0.3.0",
+  "name": "insort",
+  "version": "0.4.0",
   "description": "Map, Set, and Object subclasses that efficiently maintain a sorted iteration order.",
-  "homepage": "https://github.com/wemoloh/tidymap",
-  "main": "tidymap.js",
+  "homepage": "https://github.com/wemoloh/insort",
+  "main": "insort.js",
   "scripts": {
-    "lint": "eslint tidymap.js test/test.js",
+    "lint": "eslint insort.js test/test.js",
     "test": "mocha",
-    "minify": "babili tidymap.js -o tidymap.min.js --no-comments"
+    "minify": "babili insort.js -o insort.min.js --no-comments"
   },
   "keywords": [
     "map",
@@ -17,15 +17,17 @@
     "iterate",
     "bisect",
     "insort",
-    "OrderedMap",
     "SortedMap",
+    "SortedSet",
+    "SortedObject",
+    "OrderedMap",
     "OrderedSet",
-    "SortedSet"
+    "OrderedObject"
   ],
   "author": "Bart Robinson <bart@bartrobinson.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/wemoloh/tidymap.git"
+    "url": "git://github.com/wemoloh/insort.git"
   },
   "license": "MIT",
   "devDependencies": {

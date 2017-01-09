@@ -1,13 +1,15 @@
 /**
- * tidymap module: provides TidyMap, TidySet, and TidyObject.
+ * insort module: provides SortedMap, SortedSet, and SortedObject.
  */
 
 (function() {
   'use strict';
 
+  let insort = {};
+
   // Module constants
-  const CMP = Symbol('tidymap.CMP');
-  const ORDER = Symbol('tidymap.ORDER');
+  const CMP = Symbol('insort.CMP');
+  const ORDER = Symbol('insort.ORDER');
   const CMP_DEFAULT = (a, b) => String(a).localeCompare(b);
 
   // Binary search
@@ -29,10 +31,10 @@
   /**
    * Map subclass that efficiently maintains a sorted iteration order.
    */
-  class TidyMap extends Map {
+  class SortedMap extends Map {
 
     /**
-     * Create a new TidyMap.
+     * Create a new SortedMap.
      *
      * @param {Iterable} [entries] - Key-value pairs to initialize map.  They
      * do not have to be pre-sorted.
@@ -102,17 +104,17 @@
     }
   }
 
-  TidyMap.prototype[Symbol.iterator] = TidyMap.prototype.entries;
+  SortedMap.prototype[Symbol.iterator] = SortedMap.prototype.entries;
 
-  TidyMap.TidyMap = TidyMap;
+  insort.SortedMap = SortedMap;
 
   /**
    * Set subclass that efficiently maintains a sorted iteration order.
    */
-  class TidySet extends Set {
+  class SortedSet extends Set {
 
     /**
-     * Create a new TidySet.
+     * Create a new SortedSet.
      *
      * @param {Iterable} [entries] - Elements to initialize set.  They do not
      * have to be pre-sorted.
@@ -176,18 +178,18 @@
     }
   }
 
-  TidySet.prototype.keys = TidySet.prototype[Symbol.iterator] =
-    TidySet.prototype.values;
+  SortedSet.prototype.keys = SortedSet.prototype[Symbol.iterator] =
+    SortedSet.prototype.values;
 
-  TidyMap.TidySet = TidySet;
+  insort.SortedSet = SortedSet;
 
   /**
    * Object subclass that efficiently maintains a sorted iteration order.
    */
-  class TidyObject {
+  class SortedObject {
 
     /**
-     * Create a new TidyObject.
+     * Create a new SortedObject.
      *
      * @param {*} [src] - Source object whose own enumerable properties will be
      * shallow copied.
@@ -223,14 +225,14 @@
     }
   }
 
-  TidyMap.TidyObject = TidyObject;
+  insort.SortedObject = SortedObject;
 
   // export
   if (typeof module !== 'undefined' && !module.nodeType && module.exports) {
     // Node.js
-    module.exports = TidyMap;
+    module.exports = insort;
   } else {
     // browser
-    self.TidyMap = TidyMap;
+    self.insort = insort;
   }
 }());
